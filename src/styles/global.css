@@ -1,0 +1,361 @@
+/* =========================================================
+   Dr. Susheel Tyagi — Shared styles & animations
+   Design system: Playfair Display + Inter, Navy + Gold
+   ========================================================= */
+
+:root {
+  --primary: #000d22;
+  --primary-container: #0a2342;
+  --secondary: #7c5800;
+  --secondary-fixed: #ffdea8;
+  --secondary-fixed-dim: #f5bd52;
+  --background: #f9f9ff;
+  --surface: #f9f9ff;
+  --surface-container: #e7eeff;
+  --surface-container-low: #f0f3ff;
+  --surface-container-lowest: #ffffff;
+  --on-surface-variant: #44474e;
+  --outline-variant: #c4c6cf;
+  --shadow-ambient: 0px 10px 30px rgba(10, 35, 66, 0.05);
+  --shadow-elevated: 0px 18px 50px rgba(10, 35, 66, 0.10);
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, sans-serif; }
+
+/* Smooth font rendering */
+* { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+
+/* Material Symbols default */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+.icon-fill { font-variation-settings: 'FILL' 1; }
+
+/* Ambient shadow */
+.ambient-shadow { box-shadow: var(--shadow-ambient); }
+
+/* =========================================================
+   1. Page transition (initial fade-in for body)
+   ========================================================= */
+body {
+  opacity: 0;
+  transform: translateY(8px);
+  animation: pageEnter 600ms cubic-bezier(0.22, 1, 0.36, 1) 80ms forwards;
+}
+@keyframes pageEnter {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================================
+   2. Nav: scroll-aware shadow + active link underline
+   ========================================================= */
+.site-nav {
+  transition: box-shadow 300ms ease, background-color 300ms ease, transform 350ms ease;
+}
+.site-nav.scrolled {
+  box-shadow: 0 8px 24px rgba(10, 35, 66, 0.08);
+  background-color: rgba(249, 249, 255, 0.92);
+}
+.site-nav.hidden { transform: translateY(-100%); }
+
+.nav-link {
+  position: relative;
+  transition: color 300ms ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -4px;
+  width: 100%; height: 2px;
+  background-color: var(--secondary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 350ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.nav-link:hover::after { transform: scaleX(1); transform-origin: left; }
+.nav-link.active { color: var(--secondary); font-weight: 700; }
+.nav-link.active::after { transform: scaleX(1); }
+
+/* Mobile menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(249, 249, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-20px);
+  transition: opacity 350ms ease, transform 350ms ease;
+}
+.mobile-menu.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.mobile-menu a {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--primary);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 400ms ease, transform 400ms ease, color 200ms ease;
+}
+.mobile-menu.open a {
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-menu.open a:nth-child(1) { transition-delay: 100ms; }
+.mobile-menu.open a:nth-child(2) { transition-delay: 160ms; }
+.mobile-menu.open a:nth-child(3) { transition-delay: 220ms; }
+.mobile-menu.open a:nth-child(4) { transition-delay: 280ms; }
+.mobile-menu.open a:nth-child(5) { transition-delay: 340ms; }
+.mobile-menu a:hover { color: var(--secondary); }
+.mobile-menu .close-btn {
+  position: absolute;
+  top: 1.25rem; right: 1.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--primary);
+}
+
+/* =========================================================
+   3. Scroll-reveal animations
+   ========================================================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+              transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+.reveal-left { transform: translateX(-30px); }
+.reveal-left.visible { transform: translateX(0); }
+.reveal-right { transform: translateX(30px); }
+.reveal-right.visible { transform: translateX(0); }
+.reveal-scale { transform: scale(0.96); }
+.reveal-scale.visible { transform: scale(1); }
+
+/* Stagger children: add delay via inline data-delay or these classes */
+.reveal[data-delay="100"] { transition-delay: 100ms; }
+.reveal[data-delay="200"] { transition-delay: 200ms; }
+.reveal[data-delay="300"] { transition-delay: 300ms; }
+.reveal[data-delay="400"] { transition-delay: 400ms; }
+.reveal[data-delay="500"] { transition-delay: 500ms; }
+.reveal[data-delay="600"] { transition-delay: 600ms; }
+
+/* =========================================================
+   4. Hover-lift cards
+   ========================================================= */
+.lift-card {
+  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1),
+              border-color 300ms ease;
+}
+.lift-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-elevated);
+}
+
+/* =========================================================
+   5. Hero: subtle floating decorative blob
+   ========================================================= */
+@keyframes floatBlob {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%      { transform: translate(8px, -10px) scale(1.05); }
+}
+.float-blob {
+  animation: floatBlob 7s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Hero portrait subtle entrance */
+@keyframes portraitIn {
+  from { opacity: 0; transform: scale(0.96) translateY(20px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.portrait-in { animation: portraitIn 900ms cubic-bezier(0.22, 1, 0.36, 1) 200ms backwards; }
+
+/* Hero text staggered */
+@keyframes heroLineIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-line-1 { animation: heroLineIn 700ms cubic-bezier(0.22, 1, 0.36, 1) 150ms backwards; }
+.hero-line-2 { animation: heroLineIn 700ms cubic-bezier(0.22, 1, 0.36, 1) 320ms backwards; }
+.hero-line-3 { animation: heroLineIn 700ms cubic-bezier(0.22, 1, 0.36, 1) 480ms backwards; }
+
+/* =========================================================
+   6. Counter animation: numbers count up
+   (handled via JS adding .count-active)
+   ========================================================= */
+.counter { display: inline-block; font-variant-numeric: tabular-nums; }
+
+/* =========================================================
+   7. Buttons: shine sweep on hover
+   ========================================================= */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: background-color 350ms ease, color 350ms ease,
+              transform 200ms ease, box-shadow 350ms ease;
+}
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg,
+    transparent 30%,
+    rgba(255, 222, 168, 0.35) 50%,
+    transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-primary:hover::before { transform: translateX(100%); }
+.btn-primary:hover { box-shadow: 0 12px 28px rgba(10, 35, 66, 0.18); }
+.btn-primary:active { transform: scale(0.98); }
+
+.btn-outline {
+  transition: background-color 350ms ease, color 350ms ease,
+              border-color 350ms ease, transform 200ms ease;
+}
+.btn-outline:active { transform: scale(0.98); }
+
+/* =========================================================
+   8. Fellowship badges shimmer
+   ========================================================= */
+@keyframes badgeShimmer {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(245, 189, 82, 0); }
+  50%      { box-shadow: 0 0 0 4px rgba(245, 189, 82, 0.18); }
+}
+.badge-fellow:hover { animation: badgeShimmer 1.6s ease-in-out infinite; }
+
+/* =========================================================
+   9. Form fields: focus ring with smooth border + label
+   ========================================================= */
+.form-field input,
+.form-field textarea,
+.form-field select {
+  transition: border-color 250ms ease, box-shadow 250ms ease, background-color 250ms ease;
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(10, 35, 66, 0.10);
+  outline: none;
+}
+.form-field .err-msg {
+  color: #ba1a1a;
+  font-size: 12px;
+  margin-top: 4px;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 250ms ease, max-height 250ms ease;
+}
+.form-field.invalid .err-msg {
+  opacity: 1;
+  max-height: 40px;
+}
+.form-field.invalid input,
+.form-field.invalid textarea,
+.form-field.invalid select {
+  border-color: #ba1a1a;
+}
+
+/* Success toast */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(40px);
+  background: var(--primary);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 8px;
+  box-shadow: 0 12px 36px rgba(10, 35, 66, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  z-index: 80;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 350ms ease, transform 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.toast .material-symbols-outlined { color: var(--secondary-fixed-dim); }
+
+/* =========================================================
+   10. Testimonials carousel
+   ========================================================= */
+.testi-track {
+  display: flex;
+  gap: 1.5rem;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.testi-card {
+  flex: 0 0 100%;
+  min-width: 0;
+}
+@media (min-width: 768px) {
+  .testi-card { flex: 0 0 calc((100% - 3rem) / 3); }
+}
+.testi-arrow {
+  transition: background-color 300ms ease, color 300ms ease, transform 300ms ease;
+}
+.testi-arrow:active { transform: scale(0.92); }
+.testi-arrow:disabled { opacity: 0.4; cursor: not-allowed; }
+
+/* =========================================================
+   11. Timeline pulse on visible dot
+   ========================================================= */
+@keyframes dotPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(245, 189, 82, 0.55); }
+  70%  { box-shadow: 0 0 0 14px rgba(245, 189, 82, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(245, 189, 82, 0); }
+}
+.timeline-dot.active { animation: dotPulse 2.4s ease-out infinite; }
+
+/* =========================================================
+   12. Reduced motion respect
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; opacity: 1; transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* =========================================================
+   13. Utility: gradient text accent
+   ========================================================= */
+.text-gradient-gold {
+  background: linear-gradient(120deg, #7c5800, #f5bd52);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* =========================================================
+   14. Active nav-pill on mobile menu items
+   ========================================================= */
+.mobile-menu a.active { color: var(--secondary); }

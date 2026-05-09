@@ -1,0 +1,147 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout
+  title="Clinical Expertise | Dr. Susheel Tyagi"
+  description="Clinical expertise of Dr. Susheel Tyagi — Internal Medicine, Diabetes & Endocrinology, Hypertension, Obesity, Metabolic Disorders, and Infectious Diseases."
+>
+  <main class="flex-grow">
+
+    <!-- =============== HERO =============== -->
+    <section class="py-section-padding-mobile md:py-section-padding-desktop px-gutter max-w-[1280px] mx-auto text-center">
+      <p class="hero-line-1 text-label-md font-label-md text-secondary uppercase tracking-widest mb-3">Clinical Specialties</p>
+      <h1 class="hero-line-2 text-display-lg-mobile md:text-display-lg font-display-lg text-primary mb-6">Clinical Expertise</h1>
+      <p class="hero-line-3 text-body-lg font-body-lg text-on-surface-variant max-w-3xl mx-auto">
+        Delivering gold-standard care through rigorous diagnosis and holistic management of complex medical conditions across internal medicine, endocrinology, and infectious diseases.
+      </p>
+    </section>
+
+    <!-- =============== EXPERTISE BENTO =============== -->
+    <section class="pb-section-padding-mobile md:pb-section-padding-desktop px-gutter max-w-[1280px] mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+
+        <div id="metabolic" class="reveal md:col-span-8 lift-card bg-surface-container-lowest ambient-shadow border border-outline-variant/30 rounded-xl p-8 border-t-2 border-t-secondary relative overflow-hidden group">
+          <div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity pointer-events-none">
+            <span class="material-symbols-outlined icon-fill text-primary" style="font-size: 120px;">medical_services</span>
+          </div>
+          <h3 class="text-headline-md font-headline-md text-primary mb-4 relative z-10">Internal Medicine</h3>
+          <p class="text-body-lg font-body-lg text-on-surface-variant mb-6 relative z-10 max-w-xl">
+            Comprehensive general diagnosis and management of adult diseases. Focus on preventive care, complex multi-system disorders, and chronic illness management to ensure long-term health and stability.
+          </p>
+          <ul class="space-y-3 relative z-10">
+            <li class="flex items-start"><span class="material-symbols-outlined text-secondary mr-3 mt-1 icon-fill">check_circle</span><span class="text-body-md font-body-md text-on-background">Complex multi-system disorder diagnosis</span></li>
+            <li class="flex items-start"><span class="material-symbols-outlined text-secondary mr-3 mt-1 icon-fill">check_circle</span><span class="text-body-md font-body-md text-on-background">Preventive health screenings and assessments</span></li>
+            <li class="flex items-start"><span class="material-symbols-outlined text-secondary mr-3 mt-1 icon-fill">check_circle</span><span class="text-body-md font-body-md text-on-background">Evidence-based chronic illness management</span></li>
+          </ul>
+        </div>
+
+        <div id="hypertension" class="reveal md:col-span-4 lift-card bg-surface-container-lowest ambient-shadow border border-outline-variant/30 rounded-xl p-8" data-delay="100">
+          <div class="mb-4">
+            <span class="material-symbols-outlined text-secondary text-[40px] icon-fill">vital_signs</span>
+          </div>
+          <h3 class="text-headline-sm font-headline-sm text-primary mb-3">Hypertension</h3>
+          <p class="text-body-md font-body-md text-on-surface-variant mb-4">
+            Precision BP management integrating advanced pharmacotherapy with sustainable lifestyle interventions.
+          </p>
+          <a class="text-label-md font-label-md text-secondary hover:text-primary transition-colors flex items-center" href="/appointment">
+            Schedule a Consult <span class="material-symbols-outlined ml-1 text-[16px]">arrow_forward</span>
+          </a>
+        </div>
+
+        <div id="diabetes" class="reveal md:col-span-6 lift-card bg-primary text-on-primary rounded-xl p-8 relative overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-primary-container to-primary opacity-50 z-0 pointer-events-none"></div>
+          <div class="relative z-10">
+            <div class="mb-4"><span class="material-symbols-outlined text-secondary-fixed-dim text-[40px] icon-fill">water_drop</span></div>
+            <h3 class="text-headline-md font-headline-md text-on-primary mb-4">Diabetes &amp; Endocrinology</h3>
+            <p class="text-body-md font-body-md text-on-primary/80 mb-6">
+              Expertise in Type 1 and Type 2 diabetes care, including continuous glucose monitoring, advanced insulin protocols, and individualised lifestyle plans. PG Diploma in Diabetes from Royal College of Physicians, UK.
+            </p>
+            <ul class="space-y-2">
+              <li class="flex items-start"><span class="material-symbols-outlined text-secondary-fixed-dim mr-2 icon-fill">done</span><span class="text-body-md font-body-md text-on-primary/90">Type 1 &amp; Type 2 Management</span></li>
+              <li class="flex items-start"><span class="material-symbols-outlined text-secondary-fixed-dim mr-2 icon-fill">done</span><span class="text-body-md font-body-md text-on-primary/90">Advanced Insulin &amp; CGM Protocols</span></li>
+              <li class="flex items-start"><span class="material-symbols-outlined text-secondary-fixed-dim mr-2 icon-fill">done</span><span class="text-body-md font-body-md text-on-primary/90">Gestational Diabetes Care</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="obesity" class="reveal md:col-span-6 lift-card bg-surface-container-lowest ambient-shadow border border-outline-variant/30 rounded-xl p-8" data-delay="100">
+          <div class="mb-4"><span class="material-symbols-outlined text-secondary text-[40px] icon-fill">monitor_weight</span></div>
+          <div class="inline-block bg-secondary/10 text-secondary text-caption font-caption px-3 py-1 rounded-full mb-3 font-semibold tracking-wide uppercase">SCOPE Certified</div>
+          <h3 class="text-headline-md font-headline-md text-primary mb-4">Obesity &amp; Metabolic Disorders</h3>
+          <p class="text-body-md font-body-md text-on-surface-variant mb-6">
+            Internationally certified approach to weight management and metabolic health, addressing the root physiological causes rather than just symptoms.
+          </p>
+          <ul class="space-y-3">
+            <li class="flex items-start"><span class="material-symbols-outlined text-secondary mr-3 mt-1 icon-fill">check_circle</span><span class="text-body-md font-body-md text-on-background">Holistic weight management plans</span></li>
+            <li class="flex items-start"><span class="material-symbols-outlined text-secondary mr-3 mt-1 icon-fill">check_circle</span><span class="text-body-md font-body-md text-on-background">Metabolic syndrome interventions</span></li>
+            <li class="flex items-start"><span class="material-symbols-outlined text-secondary mr-3 mt-1 icon-fill">check_circle</span><span class="text-body-md font-body-md text-on-background">Lifestyle &amp; nutrition counselling</span></li>
+          </ul>
+        </div>
+
+        <div id="infectious" class="reveal md:col-span-12 lift-card bg-surface-container-low border border-outline-variant/30 rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div class="md:w-2/3">
+            <h3 class="text-headline-sm font-headline-sm text-primary mb-3 flex items-center">
+              <span class="material-symbols-outlined text-secondary mr-3 text-[32px] icon-fill">coronavirus</span>
+              Infectious Diseases
+            </h3>
+            <p class="text-body-md font-body-md text-on-surface-variant">
+              Accurate identification and targeted treatment of bacterial, viral, and fungal infections. Strong focus on antimicrobial stewardship, rapid recovery protocols, and the management of HIV-associated complications.
+            </p>
+          </div>
+          <div class="md:w-1/3 flex justify-end w-full">
+            <a class="btn-outline inline-flex items-center justify-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-on-primary px-6 py-3 rounded-DEFAULT text-label-md font-label-md w-full md:w-auto" href="/appointment">
+              Request Consultation
+              <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== WHY CHOOSE =============== -->
+    <section class="py-section-padding-mobile md:py-section-padding-desktop bg-surface-container px-gutter">
+      <div class="max-w-[1280px] mx-auto">
+        <div class="text-center mb-16 reveal">
+          <p class="text-label-md font-label-md text-secondary uppercase tracking-widest mb-3">The Difference</p>
+          <h2 class="text-headline-md font-headline-md text-primary mb-4">Why Choose Dr. Tyagi</h2>
+          <p class="text-body-lg font-body-lg text-on-surface-variant max-w-2xl mx-auto">
+            A commitment to excellence backed by global training and a patient-first philosophy.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="reveal lift-card bg-surface-container-lowest p-8 rounded-xl ambient-shadow text-center">
+            <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mx-auto mb-6"><span class="material-symbols-outlined text-secondary text-[32px] icon-fill">school</span></div>
+            <h4 class="text-headline-sm font-headline-sm text-primary mb-3">International Fellowships</h4>
+            <p class="text-body-md font-body-md text-on-surface-variant">FACP, FICP, FIACM, and FDIAI fellowships — bringing global standards of internal medicine to local practice.</p>
+          </div>
+          <div class="reveal lift-card bg-surface-container-lowest p-8 rounded-xl ambient-shadow text-center border-t-2 border-secondary" data-delay="100">
+            <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mx-auto mb-6"><span class="material-symbols-outlined text-secondary text-[32px] icon-fill">psychology</span></div>
+            <h4 class="text-headline-sm font-headline-sm text-primary mb-3">Holistic Approach</h4>
+            <p class="text-body-md font-body-md text-on-surface-variant">Treating the patient, not just the disease. Integrating physical health, lifestyle, nutrition, and mental well-being.</p>
+          </div>
+          <div class="reveal lift-card bg-surface-container-lowest p-8 rounded-xl ambient-shadow text-center" data-delay="200">
+            <div class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mx-auto mb-6"><span class="material-symbols-outlined text-secondary text-[32px] icon-fill">verified</span></div>
+            <h4 class="text-headline-sm font-headline-sm text-primary mb-3">Gold Standard Care</h4>
+            <p class="text-body-md font-body-md text-on-surface-variant">Strict adherence to the latest evidence-based clinical guidelines ensuring precise, reliable outcomes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =============== CTA =============== -->
+    <section class="py-section-padding-mobile px-gutter">
+      <div class="max-w-[1280px] mx-auto bg-primary rounded-xl p-10 md:p-14 text-on-primary flex flex-col md:flex-row items-center justify-between gap-6 reveal reveal-scale relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-secondary-fixed to-transparent"></div>
+        <div class="relative z-10">
+          <h3 class="text-headline-md font-headline-md text-on-primary mb-3">Ready to Begin Your Care Journey?</h3>
+          <p class="text-body-lg text-on-primary/80 max-w-xl">Book a consultation with Dr. Tyagi and receive a comprehensive, personalised treatment plan.</p>
+        </div>
+        <a class="btn-primary inline-flex justify-center items-center gap-2 px-8 py-4 bg-secondary text-on-secondary-fixed rounded-DEFAULT text-label-md font-label-md relative z-10" href="/appointment">
+          Book Appointment
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+      </div>
+    </section>
+
+  </main>
+</Layout>

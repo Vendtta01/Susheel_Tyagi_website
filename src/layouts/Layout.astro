@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const {
+  title,
+  description = 'Dr. Susheel Tyagi — Senior Consultant Physician with 16+ years of experience in internal medicine, diabetes, hypertension, obesity, and infectious diseases. MEDIIX Clinic, Indirapuram, Ghaziabad.',
+} = Astro.props;
+
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (target: string) =>
+  target === '/' ? path === '/' : path === target || path.startsWith(target + '/');
+
+const navItems = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/expertise', label: 'Expertise' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const onAppointmentPage = isActive('/appointment');
+---
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600;700&display=swap"
+  />
+  <link
+    rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  />
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col pt-[88px]">
+
+  <!-- =============== TOP NAV =============== -->
+  <header class="site-nav bg-surface/80 backdrop-blur-md fixed top-0 left-0 w-full z-50 border-b border-outline-variant/30">
+    <div class="flex justify-between items-center px-gutter py-4 max-w-[1280px] mx-auto">
+      <a href="/" class="text-body-lg font-headline-sm font-semibold text-primary">Dr. Susheel Tyagi</a>
+      <nav class="hidden md:flex items-center space-x-8">
+        {navItems.map(item => (
+          <a
+            class:list={[
+              'nav-link text-label-md font-label-md',
+              isActive(item.href) ? 'active' : 'text-on-surface-variant',
+            ]}
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+      <a
+        class:list={[
+          'btn-primary px-6 py-3 rounded-DEFAULT text-label-md font-label-md hidden sm:inline-flex items-center gap-2 ambient-shadow',
+          onAppointmentPage ? 'bg-secondary text-on-secondary-fixed' : 'bg-primary text-on-primary',
+        ]}
+        href="/appointment"
+      >
+        <span class="material-symbols-outlined text-[18px]">event</span>
+        Book Appointment
+      </a>
+      <button class="md:hidden text-primary p-2" data-menu-toggle aria-label="Open menu">
+        <span class="material-symbols-outlined text-2xl">menu</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- =============== MOBILE MENU =============== -->
+  <div class="mobile-menu" role="dialog" aria-modal="true">
+    <button class="close-btn p-2" data-menu-close aria-label="Close menu">
+      <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+    <a href="/" class={isActive('/') ? 'active' : ''}>Home</a>
+    <a href="/about" class={isActive('/about') ? 'active' : ''}>About</a>
+    <a href="/expertise" class={isActive('/expertise') ? 'active' : ''}>Expertise</a>
+    <a href="/contact" class={isActive('/contact') ? 'active' : ''}>Contact</a>
+    <a href="/appointment" class={onAppointmentPage ? 'active' : ''}>Book Appointment</a>
+  </div>
+
+  <slot />
+
+  <!-- =============== FOOTER =============== -->
+  <footer class="w-full py-section-padding-mobile px-gutter bg-primary text-on-primary border-t border-outline-variant/10">
+    <div class="max-w-[1280px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-10">
+      <div class="md:col-span-2">
+        <div class="text-headline-sm font-headline-sm text-secondary-fixed mb-4">Dr. Susheel Tyagi</div>
+        <p class="text-body-md font-body-md text-on-primary/70 max-w-md">
+          Senior Consultant Physician — Internal Medicine, Diabetes, Hypertension, Obesity &amp; Infectious Diseases. 16+ years of experience.
+        </p>
+      </div>
+      <div>
+        <p class="text-label-md font-label-md text-secondary-fixed mb-4 uppercase tracking-wider">Navigate</p>
+        <nav class="flex flex-col gap-3">
+          <a class="text-on-primary/80 text-label-md font-label-md hover:text-secondary-fixed-dim transition-colors" href="/">Home</a>
+          <a class="text-on-primary/80 text-label-md font-label-md hover:text-secondary-fixed-dim transition-colors" href="/about">About</a>
+          <a class="text-on-primary/80 text-label-md font-label-md hover:text-secondary-fixed-dim transition-colors" href="/expertise">Expertise</a>
+          <a class="text-on-primary/80 text-label-md font-label-md hover:text-secondary-fixed-dim transition-colors" href="/contact">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <p class="text-label-md font-label-md text-secondary-fixed mb-4 uppercase tracking-wider">Reach Us</p>
+        <div class="space-y-3">
+          <a class="flex items-center gap-3 text-on-primary/80 text-body-md hover:text-secondary-fixed-dim transition-colors" href="tel:07303190200">
+            <span class="material-symbols-outlined text-[18px]">call</span>
+            073031 90200
+          </a>
+          <p class="flex items-start gap-3 text-on-primary/80 text-body-md">
+            <span class="material-symbols-outlined text-[18px] mt-0.5">location_on</span>
+            MEDIIX Clinic, Indirapuram, Ghaziabad
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="max-w-[1280px] mx-auto pt-6 border-t border-on-primary/10 text-center">
+      <p class="text-caption font-caption text-on-primary/60">© 2024 Dr. Susheel Tyagi. All Rights Reserved. MEDIIX CLINIC.</p>
+    </div>
+  </footer>
+
+  <script is:inline src="/scripts/app.js" defer></script>
+</body>
+</html>
